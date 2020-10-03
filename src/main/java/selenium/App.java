@@ -9,29 +9,20 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 
 import java.io.File;
 import java.time.Duration;
-
 public class App {
     private static final String OS_WINDOWS = "win";
     private static final String OS_MAC = "osx";
     private static final String OS_LINUX = "linux";
 
-
-    public static void main(String[] args) {
-        
-        setUpChromeDriver();
-        WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 1000);
-        try {
-            driver.get("https://google.com/");
-            driver.findElement(By.name("q")).sendKeys("facebook" + Keys.ENTER);
-            WebElement firstResult = wait.until(presenceOfElementLocated(By.cssSelector("h3>div")));
-            System.out.println(firstResult.getAttribute("textContent"));
-        } finally {
-            driver.quit();
-        }
+    public static String getGreeting(){
+        return "Hello World";
     }
 
-    private static void setUpChromeDriver() {
+    public static void main(String[] args) {
+        System.out.println(getGreeting());
+    }
+
+    public static void setUpChromeDriver() {
         String os = System.getProperty("os.name").toLowerCase();
         StringBuffer driverPath = new StringBuffer();
         driverPath.append("./ressource/");
