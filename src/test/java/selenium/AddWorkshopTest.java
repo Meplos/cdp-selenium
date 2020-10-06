@@ -17,13 +17,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 
 /**
- * Lors de l'écriture des tests, on s'est rendu compte de bcp d'erreur dans le cod
- * fournis. On a donc décider de le corrigé (après tout ça sert à ça aussi des tests).
- * Les modification on était faite dans les fichier:
+ * Lors de l'écriture des tests, on s'est rendu compte de bcp d'erreur dans le code
+ * fourni. On a donc décidé de le corriger (après tout ça sert à ça aussi des tests).
+ * Les modifications ont été faites dans les fichiers:
  *  - index.ejs :
  *      -   Suppression de la balise fermante </ul> en trop
- *      -   Ajout encapsulation de la desciption d'un atelier dans la liste
- *      -   Ajout d'une classe name au titre h5 et d'une classe description a la div précédement créé. 
+ *      -   Ajout encapsulation de la description d'un atelier dans la liste
+ *      -   Ajout d'une classe name au titre h5 et d'une classe description à la div précédement créée. 
  *  - index.js :
  *      -   Dans le callback de post("/workshop"), redirection vers la page d'accueil
  *          au lieu de re-rendre la page d'accueil sans changer l'URL.
