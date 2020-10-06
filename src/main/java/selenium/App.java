@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class App {
     private static final String OS_WINDOWS = "win";
@@ -27,7 +24,11 @@ public class App {
 
     public static void main(String[] args) {
         setUpChromeDriver();
-        WebDriver driver = new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-debugging-port=9222");
+        WebDriver driver = new ChromeDriver(options);
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         String resName, resDesc;
        try {

@@ -3,22 +3,17 @@
  */
 package selenium;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
-import java.io.File;
-import java.net.http.WebSocket;
-import java.time.Duration;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 /**
@@ -46,7 +41,11 @@ public class AddWorkshopTest {
 
     @Test public void testAddOne(){
         App.setUpChromeDriver();
-        WebDriver driver = new ChromeDriver();
+        
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-debugging-port=9222");
+        WebDriver driver = new ChromeDriver(options);
+
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         String resName, resDesc;
        try {
@@ -73,8 +72,12 @@ public class AddWorkshopTest {
     }
 
     @Test public void testNoDescription(){
-        App.setUpChromeDriver();
-        WebDriver driver = new ChromeDriver();
+        App.setUpChromeDriver();        
+        
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-debugging-port=9222");
+        WebDriver driver = new ChromeDriver(options);
+
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         String formUrl = "http://localhost:3000/workshop";
         String currentUrl;
@@ -97,8 +100,12 @@ public class AddWorkshopTest {
     }
 
         @Test public void testNoName(){
-        App.setUpChromeDriver();
-        WebDriver driver = new ChromeDriver();
+        App.setUpChromeDriver();        
+        
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-debugging-port=9222");
+        WebDriver driver = new ChromeDriver(options);
+
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         String formUrl = "http://localhost:3000/workshop";
         String currentUrl;
