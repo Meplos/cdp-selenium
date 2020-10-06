@@ -59,7 +59,6 @@ public class AddWorkshopTest {
             WebElement send = driver.findElement(By.cssSelector("button"));
             send.click();
             List<WebElement> items = driver.findElements(By.cssSelector("li"));
-
             resName = items.get(items.size() - 1).findElement(By.cssSelector(".name")).getText();
             resDesc = items.get(items.size() - 1).findElement(By.cssSelector(".description")).getText();
         } finally {
@@ -99,14 +98,14 @@ public class AddWorkshopTest {
 
     }
 
-        @Test public void testNoName(){
+    @Test public void testNoName(){
         App.setUpChromeDriver();        
         
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-debugging-port=9222");
         WebDriver driver = new ChromeDriver(options);
 
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         String formUrl = "http://localhost:3000/workshop";
         String currentUrl;
         try {
@@ -125,6 +124,40 @@ public class AddWorkshopTest {
             driver.quit();
         }
         assertEquals(formUrl, currentUrl);
+
+    }
+
+    @Test public void testCancel(){
+        App.setUpChromeDriver();        
+        
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-debugging-port=9222");
+        WebDriver driver = new ChromeDriver(options);
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        long nbEltsBegin;
+        long nbEltsEnd;
+        try {
+            driver.get("http://localhost:3000");
+
+            nbEltsBegin = driver.findElements(By.cssSelector("li")).size();
+            
+            WebElement button = driver.findElement(By.cssSelector("a"));
+            button.click();
+            WebElement name = driver.findElement(By.cssSelector(nameField));
+            name.sendKeys(nameValue);
+            WebElement desc = driver.findElement(By.cssSelector(descriptionField));
+            desc.sendKeys(descriptionValue);
+            
+            WebElement cancel = driver.findElement(By.cssSelector(".btn-secondary"));
+            cancel.click();
+
+            nbEltsEnd = driver.findElements(By.cssSelector("li")).size();
+
+        } finally {
+            driver.quit();
+        }
+        assertEquals(nbEltsBegin, nbEltsEnd);
 
     }
 }
